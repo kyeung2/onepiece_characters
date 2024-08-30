@@ -1,10 +1,10 @@
-package com.nimbus.onepiece_graphql_api;
+package com.nimbus.onepiece;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnepieceGraphqlApiApplicationTests {
+class SmokeTest {
 
 	@Test
 	void contextLoads() {

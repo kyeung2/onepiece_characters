@@ -1,4 +1,4 @@
-package com.nimbus.onepiece_graphql_api;
+package com.nimbus.onepiece;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
