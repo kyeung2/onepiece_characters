@@ -1,3 +1,40 @@
 type Query {
     greeting: String!
+    character(id: ID!): Character
+    characters(faction: Faction): [Character!]!
+    crew(name: String!): Crew
+}
+
+type Character {
+    id: ID!
+    name: String!
+    role: Role!
+    faction: Faction!
+}
+
+type Crew {
+    name: String!
+    captain: Character!
+    members: [Character!]!
+}
+
+enum Role{
+    ARCHAEOLOGIST
+    CAPTAIN
+    COOK
+    DOCTOR
+    HELMSMAN
+    MUSICIAN
+    NAVIGATOR
+    SHIPWRIGHT
+    SNIPER
+    SWORDSMAN
+    OTHER
+}
+
+enum Faction{
+    PIRATE
+    MARINE
+    REVOLUTIONARY
+    OTHER
 }
