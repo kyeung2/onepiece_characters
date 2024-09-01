@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
-	id 'com.netflix.dgs.codegen' version '6.2.1'
 }
 
 group = 'com.nimbus'
@@ -10,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(22)
 	}
 }
 
@@ -20,14 +19,16 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-graphql'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// one of the steps of this project will be to set up test containers to run the integration tests and
+	// any additional config for running on GHA.
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.springframework.graphql:spring-graphql-test'
+	testImplementation 'io.projectreactor:reactor-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-generateJava {
-	schemaPaths = ["${projectDir}/src/main/resources/graphql-client"]
-	packageName = 'com.nimbus.onepiece_graphql_api.codegen'
-	generateClient = true
 }
 
 tasks.named('test') {

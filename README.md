@@ -1,2 +1,2 @@
 # onepiece_graphql_api
-Playing with GraphQL (DGS), OpenAI, Spring Boot
+Playing with Spring GraphQL, OpenAI, Spring Boot

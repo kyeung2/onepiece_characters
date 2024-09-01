@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: onepiece_graphql_api
+  graphql:
+    graphiql:
+      enabled: true
