@@ -95,10 +95,13 @@ public class CharacterService {
     }
 
     public Collection<Character> getAllCharacters() {
+        // TODO questionable if this would exist? or at the very least have pagination. Would potential UIs inform the
+        // existence of this?
         return ALL_CHARACTERS;
     }
 
     public Collection<Character> getCharactersByCrewId(@NonNull UUID crewId) {
+        //TODO this would be a SELECT WHERE type SQL on 1 field should be OK
         return ALL_CHARACTERS.stream()
                 .filter(c -> c.crewId() != null)
                 .filter(c -> c.crewId().equals(crewId))
@@ -107,6 +110,8 @@ public class CharacterService {
 
 
     public Collection<Character> getCharactersByCrewIdAndRole(@NonNull UUID crewId, @NonNull Role role) {
+        //TODO this could be a SELECT on 2 variables, but crews are small, it's an interesting situation, would you even
+        // want to do another layer of filtering on the application layer?
         return ALL_CHARACTERS.stream()
                 .filter(c -> c.crewId() != null)
                 .filter(c -> c.crewId().equals(crewId))
