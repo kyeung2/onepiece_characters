@@ -10,8 +10,6 @@ public record Character(
         @NonNull UUID id,
         @NonNull String name,
         @NonNull Role role,
-        @NonNull Faction faction
-        //TODO give a character a Crew, a cyclic dependency and figure out how that works
-
-) {
+        @NonNull Faction faction,
+        UUID crewId) {
 }

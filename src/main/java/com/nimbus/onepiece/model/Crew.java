@@ -4,10 +4,12 @@ import lombok.Builder;
 import lombok.NonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 public record Crew(
+        @NonNull UUID id,
         @NonNull String name,
-        @NonNull Character captain,
+        Character captain,
         @NonNull List<Character> members) {
 }

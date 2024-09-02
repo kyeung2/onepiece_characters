@@ -13,29 +13,37 @@ import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
-public class CharacterController {
+public class CrewController {
 
     private final CharacterService characterService;
     private final CrewService crewService;
 
     @QueryMapping
-    public Mono<Character> character(@Argument UUID id) {
-        return characterService.getCharacterById(id)
+    public Mono<Crew> crew(@Argument UUID id) {
+        return crewService.getCrewById(id)
                 .map(Mono::just)
                 .orElse(Mono.empty());
     }
 
     @QueryMapping
-    public Flux<Character> allCharacters() {
-        return Flux.fromIterable(characterService.getAllCharacters());
+    public Flux<Crew> allCrews() {
+        return Flux.fromIterable(crewService.getAllCrews());
     }
 
-    @SchemaMapping(typeName = "Character", field = "crew")
-    public Crew crewForCharacter(Character character) {
-        return crewService.getCrewById(character.crewId()).orElse(null);
+    @SchemaMapping(typeName = "Crew", field = "members")
+    public Collection<Character> members(Crew crew) {
+        return characterService.getCharactersByCrewId(crew.id());
     }
+
+    @SchemaMapping(typeName = "Crew", field = "captain")
+    public Character captain(Crew crew) {
+        Collection<Character> captain = characterService.getCharactersByCrewIdAndRole(crew.id(), Role.CAPTAIN);
+        return captain.isEmpty() ? null : captain.iterator().next();
+    }
+
 }

@@ -1,8 +1,12 @@
 type Query {
-    greeting: String!
+
+    # character queries
     character(id: ID!): Character
-    characters(faction: Faction): [Character!]!
-    crew(name: String!): Crew
+    allCharacters: [Character!]!
+
+    # crew queries
+    crew(id: ID!): Crew
+    allCrews: [Crew!]!
 }
 
 type Character {
@@ -10,9 +14,11 @@ type Character {
     name: String!
     role: Role!
     faction: Faction!
+    crew: Crew
 }
 
 type Crew {
+    id: ID!
     name: String!
     captain: Character!
     members: [Character!]!
