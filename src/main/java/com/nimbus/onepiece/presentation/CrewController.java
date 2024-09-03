@@ -1,8 +1,8 @@
-package com.nimbus.onepiece.controller;
+package com.nimbus.onepiece.presentation;
 
-import com.nimbus.onepiece.model.Character;
-import com.nimbus.onepiece.model.Crew;
-import com.nimbus.onepiece.model.Role;
+import com.nimbus.onepiece.domain.Character;
+import com.nimbus.onepiece.domain.Crew;
+import com.nimbus.onepiece.domain.Role;
 import com.nimbus.onepiece.service.CharacterService;
 import com.nimbus.onepiece.service.CrewService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class CrewController {
 
     @QueryMapping
     public Mono<Crew> crew(@Argument UUID id) {
-        return crewService.getCrewById(id)
+        return crewService.getCrew(id)
                 .map(Mono::just)
                 .orElse(Mono.empty());
     }
@@ -37,7 +37,7 @@ public class CrewController {
 
     @SchemaMapping(typeName = "Crew", field = "members")
     public Collection<Character> members(Crew crew) {
-        return characterService.getCharactersByCrewId(crew.id());
+        return characterService.getCharacters(crew.id());
     }
 
     @SchemaMapping(typeName = "Crew", field = "captain")

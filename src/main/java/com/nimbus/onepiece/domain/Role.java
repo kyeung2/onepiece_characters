@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.model;
+package com.nimbus.onepiece.domain;
 
 public enum Role {
     ARCHAEOLOGIST,
