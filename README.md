@@ -8,6 +8,8 @@ when I deal with distributed tracing, I may introduce another service.
 
 ## Domain
 
+![One Piece logo](images/onepiece_logo.png)
+
 I have chosen to base this project on One Piece, a popular manga story that I enjoy.
 
 ## Technologies
@@ -26,3 +28,5 @@ This will probably be a growing list but at least from the outset the following 
 3. Run 'docker-compose up' from the ./docker directory
 4. run the application
 5. play with API on `http://localhost:8080/graphiql`
+
+![GraphiQL UI Sreenshot](images/screenshot_01.png)
