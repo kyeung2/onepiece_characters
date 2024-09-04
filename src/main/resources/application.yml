@@ -4,8 +4,17 @@ spring:
   graphql:
     graphiql:
       enabled: true
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/your_database
-#    username: your_username
-#    password: your_password
-#    driver-class-name: org.postgresql.Driver
+  datasource:
+    url: jdbc:postgresql://localhost:5432/peak_fiction_db
+    username: oda
+    password: god_tier
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    user: oda
+    password: god_tier
+
+
+#logging:
+#  level:
+#    root: debug

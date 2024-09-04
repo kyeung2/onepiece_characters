@@ -8,6 +8,5 @@ import java.util.UUID;
 @Builder
 public record CrewRecord(
         @NonNull UUID id,
-        @NonNull String name,
-        @NonNull UUID captainId) {
+        @NonNull String name) {
 }

@@ -10,6 +10,5 @@ import java.util.UUID;
 public record Crew(
         @NonNull UUID id,
         @NonNull String name,
-        Character captain,
         @NonNull List<Character> members) {
 }

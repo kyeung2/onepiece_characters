@@ -20,7 +20,6 @@ type Character {
 type Crew {
     id: ID!
     name: String!
-    captain: Character!
     members: [Character!]!
 }
 

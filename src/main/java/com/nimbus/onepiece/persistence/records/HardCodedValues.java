@@ -91,7 +91,6 @@ public class HardCodedValues {
 
     public static final CrewRecord CREW_STRAW_HATS = CrewRecord.builder()
             .id(CREW_STRAW_HATS_ID)
-            .captainId(CHARACTER_LUFFY.id())
             .name("Straw Hat Pirates")
             .build();
 }

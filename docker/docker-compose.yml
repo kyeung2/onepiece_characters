@@ -1,0 +1,12 @@
+version: '3.8'  # Specify Docker Compose version
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: oda
+      POSTGRES_PASSWORD: god_tier
+      POSTGRES_DB: peak_fiction_db
+    ports:
+      - "5432:5432"

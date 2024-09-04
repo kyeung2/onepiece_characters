@@ -39,11 +39,4 @@ public class CrewController {
     public Collection<Character> members(Crew crew) {
         return characterService.getCharacters(crew.id());
     }
-
-    @SchemaMapping(typeName = "Crew", field = "captain")
-    public Character captain(Crew crew) {
-        Collection<Character> captain = characterService.getCharactersByCrewIdAndRole(crew.id(), Role.CAPTAIN);
-        return captain.isEmpty() ? null : captain.iterator().next();
-    }
-
 }
