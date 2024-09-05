@@ -25,7 +25,7 @@ This will probably be a growing list but at least from the outset the following 
 
 1. Java 22 installed
 2. Docker installed
-3. Run 'docker-compose up' from the ./docker directory
+3. Run 'docker-compose up'
 4. run the application
 5. play with API on `http://localhost:8080/graphiql`
 

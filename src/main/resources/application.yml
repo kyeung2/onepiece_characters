@@ -1,17 +1,15 @@
 spring:
   application:
     name: onepiece_graphql_api
+  config:
+    import: optional:file:.env[.properties]
   graphql:
     graphiql:
       enabled: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/peak_fiction_db
-    username: oda
-    password: god_tier
+    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: true
-
-#logging:
-#  level:
-#    root: debug
