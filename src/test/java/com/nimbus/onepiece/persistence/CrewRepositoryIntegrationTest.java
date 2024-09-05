@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.persistence;
 
-import org.junit.jupiter.api.Assertions;
+import com.nimbus.onepiece.persistence.records.CrewRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,13 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest
@@ -19,24 +26,31 @@ class CrewRepositoryIntegrationTest {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest")
-            .withDatabaseName("peak_fiction_db")
-            .withUsername("oda")
-            .withPassword("god_tier");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest");
 
     @Test
     void contextLoads() {
-        Assertions.assertTrue(postgres.isRunning());
+        assertTrue(postgres.isRunning());
     }
 
     @Test
     void findById() {
-
-        //TODO before going further exploring test containers I need to use the DB
-        // I will use R2DBC instead of JDBC
+        //given
+        var expectedId = UUID.fromString("00000000-0000-0000-0001-000000000000");
+        //when
+        Optional<CrewRecord> actual = crewRepository.findById(expectedId);
+        //then
+        assertTrue(actual.isPresent());
+        assertEquals(expectedId, actual.get().id());
+        assertEquals("Straw Hat Pirates", actual.get().name());
     }
 
     @Test
     void findAll() {
+        //when
+        Collection<CrewRecord> actual = crewRepository.findAll();
+        //then
+        assertEquals(1, actual.size());
+        assertEquals("Straw Hat Pirates", actual.iterator().next().name());
     }
 }

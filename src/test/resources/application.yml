@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: onepiece_graphql_api
+  graphql:
+    graphiql:
+      enabled: false
+  flyway:
+    enabled: true
+
+#logging:
+#  level:
+#    root: debug

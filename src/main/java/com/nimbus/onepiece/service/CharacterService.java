@@ -20,7 +20,7 @@ public class CharacterService {
     private final CharacterRepository characterRepository;
 
     public Optional<Character> getCharacter(@NonNull UUID id) {
-        return characterRepository.findCharacterById(id)
+        return characterRepository.findById(id)
                 .map(CharacterService::toDomain);
     }
 
