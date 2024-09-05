@@ -9,7 +9,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,14 +29,6 @@ public class CharacterService {
                 .stream()
                 .map(CharacterService::toDomain)
                 .toList();
-    }
-
-        public Collection<Character> getCharactersByCrewIdAndRole(@NonNull UUID crewId, @NonNull Role role) {
-
-            return characterRepository.findAllByCrewIdAndRole(crewId,role)
-                    .stream()
-                    .map(CharacterService::toDomain)
-                    .toList();
     }
 
     public Collection<Character> getAllCharacters() {
