@@ -70,7 +70,7 @@ class CharacterRepositoryIntegrationTest {
     @Order(4)
     void findAllByCrewId() {
         //given
-        UUID strawHatsId = TestData.CREW_STRAW_HATS_ID;
+        UUID strawHatsId = TestData.CREW_STRAW_HATS.id();
         //when
         Collection<CharacterRecord> actual = objectUnderTest.findAllByCrewId(strawHatsId);
         //then
