@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.persistence;
+package com.nimbus.onepiece;
 
 import com.nimbus.onepiece.domain.Faction;
 import com.nimbus.onepiece.domain.Role;
@@ -9,11 +9,8 @@ import lombok.experimental.UtilityClass;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * TODO temporary class, remove once persistence layer in place. Or maybe can be test data.
- */
 @UtilityClass
-public class HardCodedValues {
+public class TestData {
 
     public static final UUID CREW_STRAW_HATS_ID = UUID.fromString("00000000-0000-0000-0001-000000000000");
 
