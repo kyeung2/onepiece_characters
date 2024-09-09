@@ -23,14 +23,12 @@ public class CharacterController {
 
     @QueryMapping
     public Mono<Character> character(@Argument UUID id) {
-        return characterService.getCharacter(id)
-                .map(Mono::just)
-                .orElse(Mono.empty());
+        return characterService.getCharacter(id);
     }
 
     @QueryMapping
     public Flux<Character> allCharacters() {
-        return Flux.fromIterable(characterService.getAllCharacters());
+        return characterService.getAllCharacters();
     }
 
     @SchemaMapping(typeName = "Character", field = "crew")

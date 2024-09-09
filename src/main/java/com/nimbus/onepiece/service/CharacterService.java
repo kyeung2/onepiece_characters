@@ -8,9 +8,9 @@ import com.nimbus.onepiece.persistence.records.CharacterRecord;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,23 +19,19 @@ public class CharacterService {
 
     private final CharacterRepository characterRepository;
 
-    public Optional<Character> getCharacter(@NonNull UUID id) {
+    public Mono<Character> getCharacter(@NonNull UUID id) {
         return characterRepository.findById(id)
                 .map(CharacterService::toDomain);
     }
 
-    public Collection<Character> getCharacters(@NonNull UUID crewId) {
+    public Flux<Character> getCharacters(@NonNull UUID crewId) {
         return characterRepository.findAllByCrewId(crewId)
-                .stream()
-                .map(CharacterService::toDomain)
-                .toList();
+                .map(CharacterService::toDomain);
     }
 
-    public Collection<Character> getAllCharacters() {
+    public Flux<Character> getAllCharacters() {
         return characterRepository.findAll()
-                .stream()
-                .map(CharacterService::toDomain)
-                .toList();
+                .map(CharacterService::toDomain);
     }
 
     private static Character toDomain(CharacterRecord record) {

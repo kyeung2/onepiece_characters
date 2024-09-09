@@ -71,6 +71,7 @@ class CrewServiceTest {
         // when
         Collection<Crew> actual = objectUnderTest.getAllCrews().collectList().block();
         // then
+        assertNotNull(actual);
         assertEquals(1, actual.size());
     }
 }

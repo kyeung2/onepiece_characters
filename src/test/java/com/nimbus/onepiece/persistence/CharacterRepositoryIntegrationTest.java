@@ -16,7 +16,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,24 +45,25 @@ class CharacterRepositoryIntegrationTest {
         //given
         UUID luffyId = TestData.CHARACTER_LUFFY.id();
         //when
-        Optional<CharacterRecord> actual = objectUnderTest.findById(luffyId);
+        CharacterRecord actual = objectUnderTest.findById(luffyId).block();
         //then
-        assertTrue(actual.isPresent());
-        CharacterRecord actualCharacter = actual.get();
-        assertEquals(luffyId, actualCharacter.id());
-        assertEquals("Monkey D. Luffy", actualCharacter.name());
-        assertEquals(Role.CAPTAIN.name(), actualCharacter.role());
-        assertEquals(Faction.PIRATE.name(), actualCharacter.faction());
-        assertNotNull(actualCharacter.crewId());
+        assertNotNull(actual);
+        assertEquals(luffyId, actual.id());
+        assertEquals("Monkey D. Luffy", actual.name());
+        assertEquals(Role.CAPTAIN.name(), actual.role());
+        assertEquals(Faction.PIRATE.name(), actual.faction());
+        assertNotNull(actual.crewId());
     }
 
     @Test
     @Order(3)
-    void findAll() {
+    void findById_notfound() {
+        //given
+        UUID unknownId = UUID.randomUUID();
         //when
-        Collection<CharacterRecord> actual = objectUnderTest.findAll();
+        CharacterRecord actual = objectUnderTest.findById(unknownId).block();
         //then
-        assertEquals(10, actual.size());
+        assertNull(actual);
     }
 
     @Test
@@ -72,9 +72,32 @@ class CharacterRepositoryIntegrationTest {
         //given
         UUID strawHatsId = TestData.CREW_STRAW_HATS.id();
         //when
-        Collection<CharacterRecord> actual = objectUnderTest.findAllByCrewId(strawHatsId);
+        Collection<CharacterRecord> actual = objectUnderTest.findAllByCrewId(strawHatsId).collectList().block();
         //then
+        assertNotNull(actual);
         assertEquals(10, actual.size());
         assertEquals(10, actual.stream().filter(c -> c.crewId().equals(strawHatsId)).count());
+    }
+
+    @Test
+    @Order(5)
+    void findAllByCrewId_notfound() {
+        //given
+        UUID unknownId = UUID.randomUUID();
+        //when
+        Collection<CharacterRecord> actual = objectUnderTest.findAllByCrewId(unknownId).collectList().block();
+        //then
+        assertNotNull(actual);
+        assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    @Order(6)
+    void findAll() {
+        //when
+        Collection<CharacterRecord> actual = objectUnderTest.findAll().collectList().block();
+        //then
+        assertNotNull(actual);
+        assertEquals(10, actual.size());
     }
 }

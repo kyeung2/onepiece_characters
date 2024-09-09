@@ -16,27 +16,23 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.function.BiFunction;
 
+import static java.util.Objects.*;
+
 
 @Repository
 @RequiredArgsConstructor
 public class CrewRepository {
 
-//    private final NamedParameterJdbcTemplate jdbcTemplate;
-
     private final DatabaseClient databaseClient;
 
     public Mono<CrewRecord> findById(@NonNull UUID id) {
-
-
         return databaseClient.sql("SELECT * FROM CREW WHERE id = :id")
                 .bind("id", id)
                 .map(rowMapper())
                 .one();
-
     }
 
     public Flux<CrewRecord> findAll() {
-        //  return jdbcTemplate.query("SELECT * FROM CREW", getCrewRecordRowMapper());
         return databaseClient.sql("SELECT * FROM CREW")
                 .map(rowMapper())
                 .all();
@@ -45,8 +41,8 @@ public class CrewRepository {
     private static BiFunction<Row, RowMetadata, CrewRecord> rowMapper() {
         return (row, _) ->
                 CrewRecord.builder()
-                        .id(Objects.requireNonNull(row.get("id", UUID.class)))
-                        .name(Objects.requireNonNull(row.get("name", String.class)))
+                        .id(requireNonNull(row.get("id", UUID.class)))
+                        .name(requireNonNull(row.get("name", String.class)))
                         .build();
     }
 }

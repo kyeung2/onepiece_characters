@@ -14,14 +14,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 
@@ -40,11 +39,11 @@ class CharacterServiceTest {
         // given
         CharacterRecord record = TestData.CHARACTER_LUFFY;
         UUID luffyId = record.id();
-        when(characterRepository.findById(luffyId)).thenReturn(Optional.of(record));
+        when(characterRepository.findById(luffyId)).thenReturn(Mono.just(record));
         // when
-        Optional<Character> actual = objectUnderTest.getCharacter(luffyId);
+        Character actual = objectUnderTest.getCharacter(luffyId).block();
         // then
-        assertTrue(actual.isPresent());
+        assertNotNull(actual);
         assertEquals(
                 Character.builder()
                         .id(record.id())
@@ -53,7 +52,7 @@ class CharacterServiceTest {
                         .faction(Faction.valueOf(record.faction()))
                         .crewId(record.crewId())
                         .build(),
-                actual.get());
+                actual);
     }
 
     @Test
@@ -61,11 +60,11 @@ class CharacterServiceTest {
     void getCharacter_notfound() {
         // given
         UUID unknownId = UUID.randomUUID();
-        when(characterRepository.findById(unknownId)).thenReturn(Optional.empty());
+        when(characterRepository.findById(unknownId)).thenReturn(Mono.empty());
         // when
-        Optional<Character> actual = objectUnderTest.getCharacter(unknownId);
+        Character actual = objectUnderTest.getCharacter(unknownId).block();
         // then
-        assertTrue(actual.isEmpty());
+        assertNull(actual);
     }
 
     @Test
@@ -73,10 +72,11 @@ class CharacterServiceTest {
     void getCharacters() {
         // given
         UUID crewId = TestData.CREW_STRAW_HATS.id();
-        when(characterRepository.findAllByCrewId(crewId)).thenReturn(TestData.CHARACTER_ALL);
+        when(characterRepository.findAllByCrewId(crewId)).thenReturn(Flux.fromIterable(TestData.CHARACTER_ALL));
         // when
-        Collection<Character> actual = objectUnderTest.getCharacters(crewId);
+        Collection<Character> actual = objectUnderTest.getCharacters(crewId).collectList().block();
         // then
+        assertNotNull(actual);
         assertEquals(10, actual.size());
     }
 
@@ -85,10 +85,11 @@ class CharacterServiceTest {
     void getCharacters_notfound() {
         // given
         UUID unknownCrewId = UUID.randomUUID();
-        when(characterRepository.findAllByCrewId(unknownCrewId)).thenReturn(List.of());
+        when(characterRepository.findAllByCrewId(unknownCrewId)).thenReturn(Flux.empty());
         // when
-        Collection<Character> actual = objectUnderTest.getCharacters(unknownCrewId);
+        Collection<Character> actual = objectUnderTest.getCharacters(unknownCrewId).collectList().block();
         // then
+        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -96,10 +97,11 @@ class CharacterServiceTest {
     @Order(5)
     void getAllCharacters() {
         // given
-        when(characterRepository.findAll()).thenReturn(TestData.CHARACTER_ALL);
+        when(characterRepository.findAll()).thenReturn(Flux.fromIterable(TestData.CHARACTER_ALL));
         // when
-        Collection<Character> actual = objectUnderTest.getAllCharacters();
+        Collection<Character> actual = objectUnderTest.getAllCharacters().collectList().block();
         // then
+        assertNotNull(actual);
         assertEquals(10, actual.size());
     }
 

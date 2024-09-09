@@ -56,6 +56,7 @@ class CrewRepositoryIntegrationTest {
         //when
         Collection<CrewRecord> actual = objectUnderTest.findAll().collectList().block();
         //then
+        assertNotNull(actual);
         assertEquals(1, actual.size());
         assertEquals("Straw Hat Pirates", actual.iterator().next().name());
     }

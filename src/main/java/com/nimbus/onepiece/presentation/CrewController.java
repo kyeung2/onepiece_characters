@@ -33,7 +33,7 @@ public class CrewController {
     }
 
     @SchemaMapping(typeName = "Crew", field = "members")
-    public Collection<Character> members(Crew crew) {
+    public Flux<Character> members(Crew crew) {
         return characterService.getCharacters(crew.id());
     }
 }
