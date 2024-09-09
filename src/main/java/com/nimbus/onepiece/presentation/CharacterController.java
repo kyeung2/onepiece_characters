@@ -34,7 +34,7 @@ public class CharacterController {
     }
 
     @SchemaMapping(typeName = "Character", field = "crew")
-    public Crew crewForCharacter(Character character) {
-        return crewService.getCrew(character.crewId()).orElse(null);
+    public Mono<Crew> crewForCharacter(Character character) {
+        return crewService.getCrew(character.crewId());
     }
 }

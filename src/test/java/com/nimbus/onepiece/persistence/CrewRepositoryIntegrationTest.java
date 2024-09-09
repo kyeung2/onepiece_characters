@@ -14,11 +14,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -45,18 +43,18 @@ class CrewRepositoryIntegrationTest {
         //given
         UUID expectedId = TestData.CREW_STRAW_HATS.id();
         //when
-        Optional<CrewRecord> actual = objectUnderTest.findById(expectedId);
+        CrewRecord actual = objectUnderTest.findById(expectedId).block();
         //then
-        assertTrue(actual.isPresent());
-        assertEquals(expectedId, actual.get().id());
-        assertEquals("Straw Hat Pirates", actual.get().name());
+        assertNotNull(actual);
+        assertEquals(expectedId, actual.id());
+        assertEquals("Straw Hat Pirates", actual.name());
     }
 
     @Test
     @Order(3)
     void findAll() {
         //when
-        Collection<CrewRecord> actual = objectUnderTest.findAll();
+        Collection<CrewRecord> actual = objectUnderTest.findAll().collectList().block();
         //then
         assertEquals(1, actual.size());
         assertEquals("Straw Hat Pirates", actual.iterator().next().name());

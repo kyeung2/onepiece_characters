@@ -2,7 +2,6 @@ package com.nimbus.onepiece.presentation;
 
 import com.nimbus.onepiece.domain.Character;
 import com.nimbus.onepiece.domain.Crew;
-import com.nimbus.onepiece.domain.Role;
 import com.nimbus.onepiece.service.CharacterService;
 import com.nimbus.onepiece.service.CrewService;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +24,12 @@ public class CrewController {
 
     @QueryMapping
     public Mono<Crew> crew(@Argument UUID id) {
-        return crewService.getCrew(id)
-                .map(Mono::just)
-                .orElse(Mono.empty());
+        return crewService.getCrew(id);
     }
 
     @QueryMapping
     public Flux<Crew> allCrews() {
-        return Flux.fromIterable(crewService.getAllCrews());
+        return crewService.getAllCrews();
     }
 
     @SchemaMapping(typeName = "Crew", field = "members")

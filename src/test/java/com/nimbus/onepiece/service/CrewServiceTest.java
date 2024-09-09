@@ -12,14 +12,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,18 +37,18 @@ class CrewServiceTest {
     void getCrew() {
         // given
         CrewRecord record = TestData.CREW_STRAW_HATS;
-        when(crewRepository.findById(record.id())).thenReturn(Optional.of(record));
+        when(crewRepository.findById(record.id())).thenReturn(Mono.just(record));
         // when
-        Optional<Crew> actual = objectUnderTest.getCrew(record.id());
+        Crew actual = objectUnderTest.getCrew(record.id()).block();
         // then
-        assertTrue(actual.isPresent());
+        assertNotNull(actual);
         assertEquals(
                 Crew.builder()
                         .id(record.id())
                         .name(record.name())
                         .members(List.of())
                         .build(),
-                actual.get());
+                actual);
     }
 
     @Test
@@ -55,20 +56,20 @@ class CrewServiceTest {
     void getCrew_notfound() {
         // given
         UUID unknownCrewId = UUID.randomUUID();
-        when(crewRepository.findById(unknownCrewId)).thenReturn(Optional.empty());
+        when(crewRepository.findById(unknownCrewId)).thenReturn(Mono.empty());
         // when
-        Optional<Crew> actual = objectUnderTest.getCrew(unknownCrewId);
+        Crew actual = objectUnderTest.getCrew(unknownCrewId).block();
         // then
-        assertTrue(actual.isEmpty());
+        assertNull(actual);
     }
 
     @Test
     @Order(3)
     void getAllCrews() {
         // given
-        when(crewRepository.findAll()).thenReturn(List.of(TestData.CREW_STRAW_HATS));
+        when(crewRepository.findAll()).thenReturn(Flux.fromStream(Stream.of(TestData.CREW_STRAW_HATS)));
         // when
-        Collection<Crew> actual = objectUnderTest.getAllCrews();
+        Collection<Crew> actual = objectUnderTest.getAllCrews().collectList().block();
         // then
         assertEquals(1, actual.size());
     }

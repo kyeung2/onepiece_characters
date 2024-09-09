@@ -1,40 +1,52 @@
 package com.nimbus.onepiece.persistence;
 
 import com.nimbus.onepiece.persistence.records.CrewRecord;
+import io.r2dbc.spi.Row;
+import io.r2dbc.spi.RowMetadata;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.function.BiFunction;
 
 
 @Repository
 @RequiredArgsConstructor
 public class CrewRepository {
 
-    private final NamedParameterJdbcTemplate jdbcTemplate;
+//    private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public Optional<CrewRecord> findById(@NonNull UUID id) {
+    private final DatabaseClient databaseClient;
 
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("id", id);
+    public Mono<CrewRecord> findById(@NonNull UUID id) {
 
-        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM CREW WHERE id = :id", params, getCrewRecordRowMapper()));
+
+        return databaseClient.sql("SELECT * FROM CREW WHERE id = :id")
+                .bind("id", id)
+                .map(rowMapper())
+                .one();
+
     }
 
-    public Collection<CrewRecord> findAll() {
-        return jdbcTemplate.query("SELECT * FROM CREW", getCrewRecordRowMapper());
+    public Flux<CrewRecord> findAll() {
+        //  return jdbcTemplate.query("SELECT * FROM CREW", getCrewRecordRowMapper());
+        return databaseClient.sql("SELECT * FROM CREW")
+                .map(rowMapper())
+                .all();
     }
 
-    private static RowMapper<CrewRecord> getCrewRecordRowMapper() {
-        return (rs, _) -> CrewRecord.builder()
-                .id(UUID.fromString(rs.getString("id")))
-                .name(rs.getString("name"))
-                .build();
+    private static BiFunction<Row, RowMetadata, CrewRecord> rowMapper() {
+        return (row, _) ->
+                CrewRecord.builder()
+                        .id(Objects.requireNonNull(row.get("id", UUID.class)))
+                        .name(Objects.requireNonNull(row.get("name", String.class)))
+                        .build();
     }
 }
