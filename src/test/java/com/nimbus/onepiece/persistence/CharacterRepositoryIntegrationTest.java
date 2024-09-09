@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -22,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
+@ActiveProfiles("integration")
 @Testcontainers
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CharacterRepositoryIntegrationTest {

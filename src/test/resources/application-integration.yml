@@ -3,4 +3,4 @@ spring:
     graphiql:
       enabled: false
   flyway:
-    enabled: false
+    enabled: true
