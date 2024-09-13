@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @UtilityClass
-public class TestData {
+public class PersistenceTestData {
 
     public static final CrewRecord CREW_STRAW_HATS = CrewRecord.builder()
             .id(UUID.fromString("00000000-0000-0000-0001-000000000000"))

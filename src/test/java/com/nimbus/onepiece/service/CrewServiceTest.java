@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.service;
 
-import com.nimbus.onepiece.TestData;
+import com.nimbus.onepiece.PersistenceTestData;
 import com.nimbus.onepiece.domain.Crew;
 import com.nimbus.onepiece.persistence.CrewRepository;
 import com.nimbus.onepiece.persistence.records.CrewRecord;
@@ -36,7 +36,7 @@ class CrewServiceTest {
     @Order(1)
     void getCrew() {
         // given
-        CrewRecord record = TestData.CREW_STRAW_HATS;
+        CrewRecord record = PersistenceTestData.CREW_STRAW_HATS;
         when(crewRepository.findById(record.id())).thenReturn(Mono.just(record));
         // when
         Crew actual = objectUnderTest.getCrew(record.id()).block();
@@ -67,7 +67,7 @@ class CrewServiceTest {
     @Order(3)
     void getAllCrews() {
         // given
-        when(crewRepository.findAll()).thenReturn(Flux.fromStream(Stream.of(TestData.CREW_STRAW_HATS)));
+        when(crewRepository.findAll()).thenReturn(Flux.fromStream(Stream.of(PersistenceTestData.CREW_STRAW_HATS)));
         // when
         Collection<Crew> actual = objectUnderTest.getAllCrews().collectList().block();
         // then

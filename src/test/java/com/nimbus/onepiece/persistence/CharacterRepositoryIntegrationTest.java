@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.persistence;
 
-import com.nimbus.onepiece.TestData;
+ import com.nimbus.onepiece.PersistenceTestData;
 import com.nimbus.onepiece.domain.Faction;
 import com.nimbus.onepiece.domain.Role;
 import com.nimbus.onepiece.persistence.records.CharacterRecord;
@@ -45,7 +45,7 @@ class CharacterRepositoryIntegrationTest {
     @Order(2)
     void findById() {
         //given
-        UUID luffyId = TestData.CHARACTER_LUFFY.id();
+        UUID luffyId = PersistenceTestData.CHARACTER_LUFFY.id();
         //when
         CharacterRecord actual = objectUnderTest.findById(luffyId).block();
         //then
@@ -72,7 +72,7 @@ class CharacterRepositoryIntegrationTest {
     @Order(4)
     void findAllByCrewId() {
         //given
-        UUID strawHatsId = TestData.CREW_STRAW_HATS.id();
+        UUID strawHatsId = PersistenceTestData.CREW_STRAW_HATS.id();
         //when
         Collection<CharacterRecord> actual = objectUnderTest.findAllByCrewId(strawHatsId).collectList().block();
         //then

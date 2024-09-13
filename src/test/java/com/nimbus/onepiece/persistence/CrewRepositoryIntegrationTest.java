@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.persistence;
 
-import com.nimbus.onepiece.TestData;
+import com.nimbus.onepiece.PersistenceTestData;
 import com.nimbus.onepiece.persistence.records.CrewRecord;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -43,7 +43,7 @@ class CrewRepositoryIntegrationTest {
     @Order(2)
     void findById() {
         //given
-        UUID expectedId = TestData.CREW_STRAW_HATS.id();
+        UUID expectedId = PersistenceTestData.CREW_STRAW_HATS.id();
         //when
         CrewRecord actual = objectUnderTest.findById(expectedId).block();
         //then

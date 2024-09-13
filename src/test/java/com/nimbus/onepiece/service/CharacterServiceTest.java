@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.service;
 
-import com.nimbus.onepiece.TestData;
+import com.nimbus.onepiece.PersistenceTestData;
 import com.nimbus.onepiece.domain.Character;
 import com.nimbus.onepiece.domain.Faction;
 import com.nimbus.onepiece.domain.Role;
@@ -37,7 +37,7 @@ class CharacterServiceTest {
     @Order(1)
     void getCharacter() {
         // given
-        CharacterRecord record = TestData.CHARACTER_LUFFY;
+        CharacterRecord record = PersistenceTestData.CHARACTER_LUFFY;
         UUID luffyId = record.id();
         when(characterRepository.findById(luffyId)).thenReturn(Mono.just(record));
         // when
@@ -71,8 +71,8 @@ class CharacterServiceTest {
     @Order(3)
     void getCharacters() {
         // given
-        UUID crewId = TestData.CREW_STRAW_HATS.id();
-        when(characterRepository.findAllByCrewId(crewId)).thenReturn(Flux.fromIterable(TestData.CHARACTER_ALL));
+        UUID crewId = PersistenceTestData.CREW_STRAW_HATS.id();
+        when(characterRepository.findAllByCrewId(crewId)).thenReturn(Flux.fromIterable(PersistenceTestData.CHARACTER_ALL));
         // when
         Collection<Character> actual = objectUnderTest.getCharacters(crewId).collectList().block();
         // then
@@ -97,7 +97,7 @@ class CharacterServiceTest {
     @Order(5)
     void getAllCharacters() {
         // given
-        when(characterRepository.findAll()).thenReturn(Flux.fromIterable(TestData.CHARACTER_ALL));
+        when(characterRepository.findAll()).thenReturn(Flux.fromIterable(PersistenceTestData.CHARACTER_ALL));
         // when
         Collection<Character> actual = objectUnderTest.getAllCharacters().collectList().block();
         // then
