@@ -11,5 +11,6 @@ CREATE TABLE CHARACTERS
     role    VARCHAR(255) NOT NULL,
     faction VARCHAR(255),
     crew_id UUID,
+    devil_fruit_id UUID,
     FOREIGN KEY (crew_id) REFERENCES CREW (id) ON DELETE SET NULL
 );

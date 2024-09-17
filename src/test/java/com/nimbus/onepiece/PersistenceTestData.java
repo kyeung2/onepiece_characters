@@ -2,6 +2,7 @@ package com.nimbus.onepiece;
 
 import com.nimbus.onepiece.domain.Faction;
 import com.nimbus.onepiece.domain.Role;
+import com.nimbus.onepiece.domain.devilfruit.StaticDevilFruits;
 import com.nimbus.onepiece.persistence.records.CharacterRecord;
 import com.nimbus.onepiece.persistence.records.CrewRecord;
 import lombok.experimental.UtilityClass;
@@ -23,6 +24,7 @@ public class PersistenceTestData {
             .role(Role.CAPTAIN.name())
             .faction(Faction.PIRATE.name())
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.GOMU_GOMU_NO_MI.id())
             .build();
     public static final CharacterRecord CHARACTER_ZORO = CharacterRecord.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000002"))
@@ -58,6 +60,7 @@ public class PersistenceTestData {
             .role(Role.DOCTOR.name())
             .faction(Faction.PIRATE.name())
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.HITO_HITO_NO_MI.id())
             .build();
     public static final CharacterRecord CHARACTER_ROBIN = CharacterRecord.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000007"))
@@ -65,6 +68,7 @@ public class PersistenceTestData {
             .role(Role.ARCHAEOLOGIST.name())  // You might want to change this to a more appropriate role like SCHOLAR
             .faction(Faction.PIRATE.name())
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.HANA_HANA_NO_MI.id())
             .build();
     public static final CharacterRecord CHARACTER_FRANKY = CharacterRecord.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000008"))
@@ -79,6 +83,7 @@ public class PersistenceTestData {
             .role(Role.MUSICIAN.name())
             .faction(Faction.PIRATE.name())
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.YOMI_YOMI_NO_MI.id())
             .build();
     public static final CharacterRecord CHARACTER_JINBE = CharacterRecord.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000010"))

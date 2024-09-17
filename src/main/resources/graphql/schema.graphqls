@@ -1,5 +1,4 @@
 type Query {
-
     # character queries
     character(id: ID!): Character
     allCharacters: [Character!]!
@@ -15,12 +14,20 @@ type Character {
     role: Role!
     faction: Faction!
     crew: Crew
+    devilFruit: DevilFruit
 }
 
 type Crew {
     id: ID!
     name: String!
     members: [Character!]!
+}
+
+type DevilFruit {
+    id: ID!
+    name: String!
+    type: DevilFruitType!
+    ability: String!
 }
 
 enum Role{
@@ -42,4 +49,12 @@ enum Faction{
     MARINE
     REVOLUTIONARY
     OTHER
+}
+
+enum DevilFruitType{
+    PARAMECIA
+    ZOAN
+    ANCIENT_ZOAN
+    MYTHICAL_ZOAN
+    LOGIA
 }

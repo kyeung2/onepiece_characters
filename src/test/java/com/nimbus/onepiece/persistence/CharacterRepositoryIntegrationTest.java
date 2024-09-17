@@ -55,6 +55,7 @@ class CharacterRepositoryIntegrationTest {
         assertEquals(Role.CAPTAIN.name(), actual.role());
         assertEquals(Faction.PIRATE.name(), actual.faction());
         assertNotNull(actual.crewId());
+        assertNotNull(actual.devilFruitId());
     }
 
     @Test

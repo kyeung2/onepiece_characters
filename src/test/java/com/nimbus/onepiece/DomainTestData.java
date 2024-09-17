@@ -4,6 +4,7 @@ import com.nimbus.onepiece.domain.Character;
 import com.nimbus.onepiece.domain.Crew;
 import com.nimbus.onepiece.domain.Faction;
 import com.nimbus.onepiece.domain.Role;
+import com.nimbus.onepiece.domain.devilfruit.StaticDevilFruits;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class DomainTestData {
             .role(Role.CAPTAIN)
             .faction(Faction.PIRATE)
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.GOMU_GOMU_NO_MI.id())
             .build();
     public static final Character CHARACTER_ZORO = Character.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000002"))
@@ -59,6 +61,7 @@ public class DomainTestData {
             .role(Role.DOCTOR)
             .faction(Faction.PIRATE)
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.HITO_HITO_NO_MI.id())
             .build();
     public static final Character CHARACTER_ROBIN = Character.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000007"))
@@ -66,6 +69,7 @@ public class DomainTestData {
             .role(Role.ARCHAEOLOGIST)  // You might want to change this to a more appropriate role like SCHOLAR
             .faction(Faction.PIRATE)
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.HANA_HANA_NO_MI.id())
             .build();
     public static final Character CHARACTER_FRANKY = Character.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000008"))
@@ -80,6 +84,7 @@ public class DomainTestData {
             .role(Role.MUSICIAN)
             .faction(Faction.PIRATE)
             .crewId(CREW_STRAW_HATS.id())
+            .devilFruitId(StaticDevilFruits.YOMI_YOMI_NO_MI.id())
             .build();
     public static final Character CHARACTER_JINBE = Character.builder()
             .id(UUID.fromString("00000000-0000-0000-0000-000000000010"))

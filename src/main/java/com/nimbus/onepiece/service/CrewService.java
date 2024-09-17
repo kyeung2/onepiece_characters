@@ -18,7 +18,11 @@ public class CrewService {
 
     private final CrewRepository crewRepository;
 
-    public Mono<Crew> getCrew(@NonNull UUID id) {
+    public Mono<Crew> getCrew(UUID id) {
+        if (id == null) {
+            return Mono.empty();
+        }
+
         return crewRepository.findById(id)
                 .map(CrewService::toDomain);
     }

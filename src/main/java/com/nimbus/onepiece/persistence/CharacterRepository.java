@@ -50,6 +50,7 @@ public class CharacterRepository {
                         .role(requireNonNull(row.get("role", String.class)))
                         .faction(requireNonNull(row.get("faction", String.class)))
                         .crewId(row.get("crew_id", UUID.class))
+                        .devilFruitId(row.get("devil_fruit_id", UUID.class))
                         .build();
     }
 }

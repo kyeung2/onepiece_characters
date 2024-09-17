@@ -2,8 +2,10 @@ package com.nimbus.onepiece.presentation;
 
 import com.nimbus.onepiece.domain.Character;
 import com.nimbus.onepiece.domain.Crew;
+import com.nimbus.onepiece.domain.devilfruit.DevilFruit;
 import com.nimbus.onepiece.service.CharacterService;
 import com.nimbus.onepiece.service.CrewService;
+import com.nimbus.onepiece.service.devilfruit.DevilFruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -20,6 +22,7 @@ public class CharacterController {
 
     private final CharacterService characterService;
     private final CrewService crewService;
+    private final DevilFruitService devilFruitService;
 
     @QueryMapping
     public Mono<Character> character(@Argument UUID id) {
@@ -34,5 +37,10 @@ public class CharacterController {
     @SchemaMapping(typeName = "Character", field = "crew")
     public Mono<Crew> crewForCharacter(Character character) {
         return crewService.getCrew(character.crewId());
+    }
+
+    @SchemaMapping(typeName = "Character", field = "devilFruit")
+    public Mono<DevilFruit> devilFruitForCharacter(Character character) {
+        return devilFruitService.getDevilFruit(character.devilFruitId());
     }
 }

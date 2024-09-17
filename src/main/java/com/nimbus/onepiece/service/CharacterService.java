@@ -41,6 +41,7 @@ public class CharacterService {
                 .role(Role.valueOf(record.role()))
                 .faction(Faction.valueOf(record.faction()))
                 .crewId(record.crewId())
+                .devilFruitId(record.devilFruitId())
                 .build();
     }
 }
