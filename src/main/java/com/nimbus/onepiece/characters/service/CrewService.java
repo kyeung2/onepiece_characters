@@ -1,9 +1,8 @@
-package com.nimbus.onepiece.service;
+package com.nimbus.onepiece.characters.service;
 
-import com.nimbus.onepiece.domain.Crew;
-import com.nimbus.onepiece.persistence.CrewRepository;
-import com.nimbus.onepiece.persistence.records.CrewRecord;
-import lombok.NonNull;
+import com.nimbus.onepiece.characters.domain.Crew;
+import com.nimbus.onepiece.characters.persistence.CrewRepository;
+import com.nimbus.onepiece.characters.persistence.records.CrewRecord;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

@@ -1,7 +1,7 @@
-package com.nimbus.onepiece.persistence;
+package com.nimbus.onepiece.characters.persistence;
 
 import com.nimbus.onepiece.PersistenceTestData;
-import com.nimbus.onepiece.persistence.records.CrewRecord;
+import com.nimbus.onepiece.characters.persistence.records.CrewRecord;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

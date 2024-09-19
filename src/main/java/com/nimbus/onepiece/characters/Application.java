@@ -1,4 +1,4 @@
-package com.nimbus.onepiece;
+package com.nimbus.onepiece.characters;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

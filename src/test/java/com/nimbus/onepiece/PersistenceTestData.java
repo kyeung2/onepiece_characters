@@ -1,10 +1,10 @@
 package com.nimbus.onepiece;
 
-import com.nimbus.onepiece.domain.Faction;
-import com.nimbus.onepiece.domain.Role;
-import com.nimbus.onepiece.domain.devilfruit.StaticDevilFruits;
-import com.nimbus.onepiece.persistence.records.CharacterRecord;
-import com.nimbus.onepiece.persistence.records.CrewRecord;
+import com.nimbus.onepiece.characters.domain.Faction;
+import com.nimbus.onepiece.characters.domain.Role;
+import com.nimbus.onepiece.characters.domain.devilfruit.StaticDevilFruits;
+import com.nimbus.onepiece.characters.persistence.records.CharacterRecord;
+import com.nimbus.onepiece.characters.persistence.records.CrewRecord;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

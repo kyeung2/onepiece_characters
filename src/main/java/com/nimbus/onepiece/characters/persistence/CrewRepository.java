@@ -1,6 +1,6 @@
-package com.nimbus.onepiece.persistence;
+package com.nimbus.onepiece.characters.persistence;
 
-import com.nimbus.onepiece.persistence.records.CrewRecord;
+import com.nimbus.onepiece.characters.persistence.records.CrewRecord;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import lombok.NonNull;
@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.function.BiFunction;
 

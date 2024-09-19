@@ -1,7 +1,7 @@
 package com.nimbus.onepiece;
 
-import com.nimbus.onepiece.service.CharacterService;
-import com.nimbus.onepiece.service.CrewService;
+import com.nimbus.onepiece.characters.service.CharacterService;
+import com.nimbus.onepiece.characters.service.CrewService;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

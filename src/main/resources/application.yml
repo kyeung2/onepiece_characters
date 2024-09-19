@@ -1,6 +1,6 @@
 spring:
   application:
-    name: onepiece_graphql_api
+    name: onepiece_characters
   config:
     import: optional:file:.env[.properties]
   graphql:

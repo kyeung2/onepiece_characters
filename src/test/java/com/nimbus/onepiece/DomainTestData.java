@@ -1,10 +1,10 @@
 package com.nimbus.onepiece;
 
-import com.nimbus.onepiece.domain.Character;
-import com.nimbus.onepiece.domain.Crew;
-import com.nimbus.onepiece.domain.Faction;
-import com.nimbus.onepiece.domain.Role;
-import com.nimbus.onepiece.domain.devilfruit.StaticDevilFruits;
+import com.nimbus.onepiece.characters.domain.Character;
+import com.nimbus.onepiece.characters.domain.Crew;
+import com.nimbus.onepiece.characters.domain.Faction;
+import com.nimbus.onepiece.characters.domain.Role;
+import com.nimbus.onepiece.characters.domain.devilfruit.StaticDevilFruits;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

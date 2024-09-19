@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.domain;
+package com.nimbus.onepiece.characters.domain;
 
 import lombok.Builder;
 import lombok.NonNull;

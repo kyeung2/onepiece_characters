@@ -1,6 +1,6 @@
-package com.nimbus.onepiece.persistence;
+package com.nimbus.onepiece.characters.persistence;
 
-import com.nimbus.onepiece.persistence.records.CharacterRecord;
+import com.nimbus.onepiece.characters.persistence.records.CharacterRecord;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import lombok.NonNull;

@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.persistence.records;
+package com.nimbus.onepiece.characters.persistence.records;
 
 import lombok.Builder;
 import lombok.NonNull;

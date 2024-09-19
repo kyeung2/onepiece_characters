@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.persistence.records;
+package com.nimbus.onepiece.characters.domain;
 
 import lombok.Builder;
 import lombok.NonNull;
@@ -6,11 +6,11 @@ import lombok.NonNull;
 import java.util.UUID;
 
 @Builder
-public record CharacterRecord(
+public record Character(
         @NonNull UUID id,
         @NonNull String name,
-        @NonNull String role,
-        @NonNull String faction,
+        @NonNull Role role,
+        @NonNull Faction faction,
         UUID crewId,
         UUID devilFruitId) {
 }

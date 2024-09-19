@@ -1,4 +1,4 @@
-package com.nimbus.onepiece.domain.devilfruit;
+package com.nimbus.onepiece.characters.domain.devilfruit;
 
 import lombok.experimental.UtilityClass;
 

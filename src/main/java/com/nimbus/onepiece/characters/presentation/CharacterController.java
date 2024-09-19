@@ -1,11 +1,11 @@
-package com.nimbus.onepiece.presentation;
+package com.nimbus.onepiece.characters.presentation;
 
-import com.nimbus.onepiece.domain.Character;
-import com.nimbus.onepiece.domain.Crew;
-import com.nimbus.onepiece.domain.devilfruit.DevilFruit;
-import com.nimbus.onepiece.service.CharacterService;
-import com.nimbus.onepiece.service.CrewService;
-import com.nimbus.onepiece.service.devilfruit.DevilFruitService;
+import com.nimbus.onepiece.characters.domain.Character;
+import com.nimbus.onepiece.characters.domain.Crew;
+import com.nimbus.onepiece.characters.domain.devilfruit.DevilFruit;
+import com.nimbus.onepiece.characters.service.CharacterService;
+import com.nimbus.onepiece.characters.service.CrewService;
+import com.nimbus.onepiece.characters.service.devilfruit.DevilFruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;

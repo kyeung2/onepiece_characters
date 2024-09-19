@@ -1,9 +1,9 @@
-package com.nimbus.onepiece.persistence;
+package com.nimbus.onepiece.characters.persistence;
 
  import com.nimbus.onepiece.PersistenceTestData;
-import com.nimbus.onepiece.domain.Faction;
-import com.nimbus.onepiece.domain.Role;
-import com.nimbus.onepiece.persistence.records.CharacterRecord;
+import com.nimbus.onepiece.characters.domain.Faction;
+import com.nimbus.onepiece.characters.domain.Role;
+import com.nimbus.onepiece.characters.persistence.records.CharacterRecord;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
