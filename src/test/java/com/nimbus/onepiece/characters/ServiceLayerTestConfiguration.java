@@ -1,4 +1,4 @@
-package com.nimbus.onepiece;
+package com.nimbus.onepiece.characters;
 
 import com.nimbus.onepiece.characters.service.CharacterService;
 import com.nimbus.onepiece.characters.service.CrewService;

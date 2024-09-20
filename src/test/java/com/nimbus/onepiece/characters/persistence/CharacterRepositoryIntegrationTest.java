@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.characters.persistence;
 
- import com.nimbus.onepiece.PersistenceTestData;
+ import com.nimbus.onepiece.characters.PersistenceTestData;
 import com.nimbus.onepiece.characters.domain.Faction;
 import com.nimbus.onepiece.characters.domain.Role;
 import com.nimbus.onepiece.characters.persistence.records.CharacterRecord;
@@ -55,7 +55,7 @@ class CharacterRepositoryIntegrationTest {
         assertEquals(Role.CAPTAIN.name(), actual.role());
         assertEquals(Faction.PIRATE.name(), actual.faction());
         assertNotNull(actual.crewId());
-        assertNotNull(actual.devilFruitId());
+        assertNotNull(actual.devilFruitCode());
     }
 
     @Test

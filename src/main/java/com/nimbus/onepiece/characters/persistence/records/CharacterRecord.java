@@ -12,5 +12,5 @@ public record CharacterRecord(
         @NonNull String role,
         @NonNull String faction,
         UUID crewId,
-        UUID devilFruitId) {
+        String devilFruitCode) {
 }

@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.characters.service;
 
-import com.nimbus.onepiece.PersistenceTestData;
+import com.nimbus.onepiece.characters.PersistenceTestData;
 import com.nimbus.onepiece.characters.domain.Crew;
 import com.nimbus.onepiece.characters.persistence.CrewRepository;
 import com.nimbus.onepiece.characters.persistence.records.CrewRecord;

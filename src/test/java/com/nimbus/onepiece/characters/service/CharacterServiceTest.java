@@ -1,6 +1,6 @@
 package com.nimbus.onepiece.characters.service;
 
-import com.nimbus.onepiece.PersistenceTestData;
+import com.nimbus.onepiece.characters.PersistenceTestData;
 import com.nimbus.onepiece.characters.domain.Character;
 import com.nimbus.onepiece.characters.domain.Faction;
 import com.nimbus.onepiece.characters.domain.Role;
@@ -51,7 +51,7 @@ class CharacterServiceTest {
                         .role(Role.valueOf(record.role()))
                         .faction(Faction.valueOf(record.faction()))
                         .crewId(record.crewId())
-                        .devilFruitId(record.devilFruitId())
+                        .devilFruitCode(record.devilFruitCode())
                         .build(),
                 actual);
     }

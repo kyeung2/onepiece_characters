@@ -1,12 +1,13 @@
 package com.nimbus.onepiece.characters.service.devilfruit;
 
-import com.nimbus.onepiece.characters.domain.devilfruit.DevilFruit;
+import nimbus.onepiece.devilfruits.interfaces.DevilFruit;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-import static com.nimbus.onepiece.characters.domain.devilfruit.StaticDevilFruits.ALL_DEVIL_FRUITS;
+import static nimbus.onepiece.devilfruits.interfaces.StaticDevilFruits.ALL_DEVIL_FRUITS;
+
 
 /**
  * TODO It would be interesting to create a DevilFruit microservice which has a RESTful API and that contributes
@@ -15,13 +16,13 @@ import static com.nimbus.onepiece.characters.domain.devilfruit.StaticDevilFruits
 @Service
 public class DevilFruitService {
 
-    public Mono<DevilFruit> getDevilFruit(UUID id) {
-        if (id == null) {
+    public Mono<DevilFruit> getDevilFruit(String code) {
+        if (code == null) {
             return Mono.empty();
         }
 
         return ALL_DEVIL_FRUITS.stream()
-                .filter(df -> df.id().equals(id))
+                .filter(df -> df.code().equals(code))
                 .findFirst()
                 .map(Mono::just)
                 .orElse(Mono.empty());
