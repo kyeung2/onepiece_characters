@@ -1,12 +1,9 @@
-package com.nimbus.onepiece.characters.service.devilfruit;
+package com.nimbus.onepiece.characters.service;
 
-import nimbus.onepiece.devilfruits.interfaces.DevilFruit;
+import com.nimbus.onepiece.devilfruits.interfaces.dto.DevilFruitDto;
+import com.nimbus.onepiece.devilfruits.interfaces.dto.StrawHatDevilFruits;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import java.util.UUID;
-
-import static nimbus.onepiece.devilfruits.interfaces.StaticDevilFruits.ALL_DEVIL_FRUITS;
 
 
 /**
@@ -16,12 +13,12 @@ import static nimbus.onepiece.devilfruits.interfaces.StaticDevilFruits.ALL_DEVIL
 @Service
 public class DevilFruitService {
 
-    public Mono<DevilFruit> getDevilFruit(String code) {
+    public Mono<DevilFruitDto> getDevilFruit(String code) {
         if (code == null) {
             return Mono.empty();
         }
 
-        return ALL_DEVIL_FRUITS.stream()
+        return StrawHatDevilFruits.ALL_STRAW_HATS.stream()
                 .filter(df -> df.code().equals(code))
                 .findFirst()
                 .map(Mono::just)
