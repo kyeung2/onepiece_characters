@@ -24,7 +24,7 @@ type Crew {
 }
 
 type DevilFruit {
-    id: ID!
+    code: String!
     name: String!
     type: DevilFruitType!
     ability: String!

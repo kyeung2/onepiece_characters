@@ -5,6 +5,7 @@ import com.nimbus.onepiece.characters.domain.Faction;
 import com.nimbus.onepiece.characters.domain.Role;
 import com.nimbus.onepiece.characters.persistence.CharacterRepository;
 import com.nimbus.onepiece.characters.persistence.records.CharacterRecord;
+import io.micrometer.observation.ObservationRegistry;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class CharacterService {
     private final CharacterRepository characterRepository;
 
     public Mono<Character> getCharacter(@NonNull UUID id) {
+
+
         return characterRepository.findById(id)
                 .map(CharacterService::toDomain);
     }
