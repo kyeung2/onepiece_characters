@@ -24,3 +24,11 @@ management:
     sampling:
       # by default spring boot samples only 10% of the requests
       probability: 1
+
+onepiece:
+  devilfruits:
+    sdk:
+      client:
+        enabled: true
+        baseUrl: http://localhost:8081
+

@@ -4,7 +4,7 @@ services:
   # DB for the characters service
   postgres:
     image: postgres:latest
-    container_name: postgres_db
+    container_name: op_characters_postgres_db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -16,7 +16,7 @@ services:
   # instrumentation can send trace data to.
   zipkin:
     image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
-    container_name: zipkin
+    container_name: onepiece_zipkin
     # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
     environment:
       - STORAGE_TYPE=mem
