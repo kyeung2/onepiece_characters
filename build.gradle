@@ -33,7 +33,7 @@ dependencies {
     // allows for auto instrumentation of DB to appear in traces in Zipkin
     implementation 'io.r2dbc:r2dbc-proxy'
     implementation 'org.flywaydb:flyway-database-postgresql'
-    implementation 'com.nimbus.onepiece.devilfruits:sdk:1.1.1'
+    implementation 'com.nimbus.onepiece.devilfruits:sdk:1.1.2'
     runtimeOnly 'org.postgresql:postgresql' // jdbc driver needed for Flyway
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
     // needed due to issue running on my local mac

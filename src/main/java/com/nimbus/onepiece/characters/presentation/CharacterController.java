@@ -7,6 +7,7 @@ import com.nimbus.onepiece.characters.service.CrewService;
 import com.nimbus.onepiece.characters.service.DevilFruitService;
 import com.nimbus.onepiece.devilfruits.interfaces.dto.DevilFruitDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class CharacterController {
 
     private final CharacterService characterService;
@@ -27,6 +29,7 @@ public class CharacterController {
 
     @QueryMapping
     public Mono<Character> character(@Argument UUID id) {
+        log.info("Fetching character with id: {}", id);
         return characterService.getCharacter(id);
     }
 

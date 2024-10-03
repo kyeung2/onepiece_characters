@@ -1,27 +1,21 @@
 package com.nimbus.onepiece.characters.service;
 
 import com.nimbus.onepiece.devilfruits.interfaces.dto.DevilFruitDto;
-import com.nimbus.onepiece.devilfruits.interfaces.dto.StrawHatDevilFruits;
+import com.nimbus.onepiece.devilfruits.sdk.client.DevilFruitsClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-
-/**
- * TODO It would be interesting to create a DevilFruit microservice which has a RESTful API and that contributes
- * to this subgraph.
- */
 @Service
+@RequiredArgsConstructor
 public class DevilFruitService {
+
+    private final DevilFruitsClient client;
 
     public Mono<DevilFruitDto> getDevilFruit(String code) {
         if (code == null) {
             return Mono.empty();
         }
-
-        return StrawHatDevilFruits.ALL_STRAW_HATS.stream()
-                .filter(df -> df.code().equals(code))
-                .findFirst()
-                .map(Mono::just)
-                .orElse(Mono.empty());
+        return client.getDevilFruit(code);
     }
 }
